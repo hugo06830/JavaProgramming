@@ -4,8 +4,11 @@ public class Tostring {
 
 	
 	static String toString(Object o) {
+		
 		String inbrackets = "";
+		
 		Field tabFields[] = o.getClass().getDeclaredFields();
+		
 		for(Field f : tabFields) {
 			String oclass = o.getClass().getSimpleName();
 			String name = f.getName();
@@ -18,7 +21,8 @@ public class Tostring {
 		
 			
 		}
-		return "to be continued";
+	return 	inbrackets.substring(0,inbrackets.length()-1);
+		
 		
 		
 	}
@@ -26,9 +30,18 @@ public class Tostring {
 	
 	private static String getvalue(Object o ,Field f) {
 		f.setAccessible(true);
-		if(f.getType().isArray()) {
-			return "to be continued";
-		}else {
+		
+		if(f.getType().isArray()) {  //If f is an array
+	    
+	     return "some arraysvalue";
+	     }
+	     
+	     
+		
+			
+			
+			
+		else {
 			
 			try {
 				return f.get(o).toString();
