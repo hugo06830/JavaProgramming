@@ -9,8 +9,8 @@ public class Tostring {
 		
 		Field tabFields[] = o.getClass().getDeclaredFields();
 		
-		for(Field f : tabFields) {
-			String oclass = o.getClass().getSimpleName();
+	
+		for(Field f : tabFields) { //field processing
 			String name = f.getName();
 			String type = f.getType().getSimpleName();
 			if(tabFields.length !=0)inbrackets += name + ":" + type + " = " + getvalue(o, f) + ",";
@@ -21,8 +21,9 @@ public class Tostring {
 		
 			
 		}
-	return 	inbrackets.substring(0,inbrackets.length()-1);
-		
+		inbrackets.substring(0,inbrackets.length()-1);
+		return o.getClass().getSimpleName()+ " " + "{" + inbrackets.substring(0,inbrackets.length()-1) + "}";
+		//substring used to delete the ','
 		
 		
 	}
@@ -34,17 +35,10 @@ public class Tostring {
 		if(f.getType().isArray()) {  //If f is an array
 	    
 	     return "some arraysvalue";
-	     }
-	     
-	     
-		
-			
-			
-			
+		}
 		else {
-			
 			try {
-				return f.get(o).toString();
+				return f.get(o).toString();             //may not access to the value of f
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				
 				e.printStackTrace();
