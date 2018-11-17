@@ -1,8 +1,9 @@
 import java.lang.reflect.Field;
+import java.util.Set;
 
 public class Tostring {
-
 	
+		
 	static String toString(Object o) {
 		
 		String inbrackets = "";
@@ -28,37 +29,17 @@ public class Tostring {
 	
 	private static String getvalue(Object o ,Field f) {
 		f.setAccessible(true);
-		
-		if(f.getClass().isPrimitive()) {
-			if(f.getType().isArray()) {
-				return "";
-			}else {
-				try {
-					return f.get(o).toString();
-				} catch (IllegalArgumentException | IllegalAccessException e) {
-					
-					e.printStackTrace();
-				}
-				return "an error as occured";
-			}
-			
-			  
+		if(f.getType().isArray()) {
+		return	arrayhandler(f,o);
 		}else {
-			try {
-				return toString((Object)f);
-			}catch(Exception e) {
-				return "unable to convert to a string this object";
-			}
 			
+		try {
+			return f.get(o).toString();
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+			return "an error as occured";
+		}
 		
 		
 		
@@ -67,9 +48,8 @@ public class Tostring {
 		
 	}
 private static String arrayhandler(Field f,Object o)	{
-	return "";
-}
+	
 
+return "";
 
-
-}
+}}
