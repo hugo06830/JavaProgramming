@@ -19,20 +19,15 @@ public class Tostring {
 				inbrackets =  " the specified objects doesn't have any fields ";
 			}
 			
-		
-			
 		}
 		inbrackets.substring(0,inbrackets.length()-1);
 		return o.getClass().getSimpleName()+ " " + "{" + inbrackets.substring(0,inbrackets.length()-1) + "}";
-		//substring used to delete the ','
-		
-		
+		//substring used to delete the ','	
 	}
 	
 	
 	private static String getvalue(Object o ,Field f) {
 		f.setAccessible(true);
-		
 		
 		if(f.getClass().isPrimitive()) {
 			if(f.getType().isArray()) {
@@ -70,4 +65,11 @@ public class Tostring {
 		
 		
 		
-	}}
+	}
+private static String arrayhandler(Field f,Object o)	{
+	return "";
+}
+
+
+
+}
