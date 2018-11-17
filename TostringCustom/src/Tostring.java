@@ -11,6 +11,7 @@ public class Tostring {
 		
 	
 		for(Field f : tabFields) { //field processing
+			
 			String name = f.getName();
 			String type = f.getType().getSimpleName();
 			if(tabFields.length !=0)inbrackets += name + ":" + type + " = " + getvalue(o, f) + ",";
@@ -32,18 +33,28 @@ public class Tostring {
 	private static String getvalue(Object o ,Field f) {
 		f.setAccessible(true);
 		
-		if(f.getType().isArray()) {  //If f is an array
-	    
-	     return "some arraysvalue";
-		}
-		else {
-			try {
-				return f.get(o).toString();             //may not access to the value of f
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				
-				e.printStackTrace();
+		
+		if(f.getClass().isPrimitive()) {
+			if(f.getType().isArray()) {
+				return "";
+			}else {
+				try {
+					return f.get(o).toString();
+				} catch (IllegalArgumentException | IllegalAccessException e) {
+					
+					e.printStackTrace();
+				}
+				return "an error as occured";
 			}
-			return "an error as occured";
+			
+			  
+		}else {
+			try {
+				return toString((Object)f);
+			}catch(Exception e) {
+				return "unable to convert to a string this object";
+			}
+			
 		}
 		
 		
@@ -59,8 +70,4 @@ public class Tostring {
 		
 		
 		
-		
-		
-	}
-	
-}
+	}}
